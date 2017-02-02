@@ -1,0 +1,611 @@
+{
+  "Java" : [ {
+    "expanded" : true,
+    "files" : [ {
+      "content" : "file2content",
+      "name" : "file2"
+    } ],
+    "name" : "Java Basics"
+  }, {
+    "expanded" : true,
+    "name" : "Java Web"
+  }, {
+    "expanded" : true,
+    "name" : "Spring"
+  }, {
+    "expanded" : true,
+    "name" : "GUI"
+  }, {
+    "expanded" : true,
+    "name" : "Java 8"
+  } ],
+  "JavaScript" : [ {
+    "expanded" : true,
+    "files" : [ {
+      "content" : "file2content",
+      "name" : "file2"
+    } ],
+    "name" : "JavaScript"
+  }, {
+    "expanded" : true,
+    "name" : "Angular 1"
+  }, {
+    "expanded" : true,
+    "name" : "Angular 2"
+  }, {
+    "expanded" : true,
+    "name" : "NodeJS"
+  }, {
+    "expanded" : true,
+    "name" : "jQuery"
+  }, {
+    "expanded" : false,
+    "name" : "HTML5"
+  }, {
+    "expanded" : true,
+    "name" : "CSS3"
+  } ],
+  "LeetCode" : [ {
+    "Description" : "Given an array of integers, return indices of the two numbers such that they add up to a specific target. \nYou may assume that each input would have exactly one solution.",
+    "Difficulty" : "Easy",
+    "Number" : 1,
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "public class Solution {\n    public int[] twoSum(int[] nums, int target) {\n        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();\n        int[] result = new int[2];\n        for(int i = 0; i < nums.length; i++) {\n            if(map.containsKey(nums[i])) {\n                result[0] = map.get(nums[i]);\n                result[1] = i;\n                return result;\n            }\n            map.put(target - nums[i], i);\n        }\n        return result;\n    }\n}",
+        "runtime" : "5ms, 99.82%"
+      } ],
+      "JavaScript" : [ {
+        "code" : "var Solution = function(){};",
+        "runtime" : "100ms"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def twoSum(self, nums, target):\n        if len(nums) <= 1:\n           return [-1,-1]\n        lookup = {}\n        for i in xrange(len(nums)):\n            gap = target - nums[i]\n            if gap not in lookup:\n                lookup[nums[i]] = i\n            else:\n             return [lookup[gap],i]\n        return [-1,-1]\n",
+        "runtime" : "100ms"
+      }, {
+        "code" : "class Solution(object):\n    def twoSum(self, nums, target):\n        d = {}\n        for i, num in enumerate(nums):\n            if target - num in d:\n                return [d[target - num], i]\n            if num not in d:\n                d[num] = i\n        return [-1,-1]",
+        "runtime" : "56ms, 90.91%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Two Sum",
+    "id" : 1
+  }, {
+    "Description" : "You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.\n\nYou may assume the two numbers do not contain any leading zero, except the number 0 itself.\n\nInput: (2 -> 4 -> 3) + (5 -> 6 -> 4)\nOutput: 7 -> 0 -> 8",
+    "Difficulty" : "Easy",
+    "Number" : 2,
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "public class Solution {}",
+        "runtime" : "100ms"
+      } ],
+      "JavaScript" : [ {
+        "code" : "var Solution = function(){};",
+        "runtime" : "100ms"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def addTwoNumbers(self, l1, l2):\n        dummy = ListNode(0)\n        curr = dummy\n        carry = 0\n        while l1 or l2:\n            v1 = l1.val if l1 else 0\n            v2 = l2.val if l2 else 0\n            bitsum = v1 + v2 + carry\n            carry, bit = divmod(bitsum, 10)\n            curr.next = ListNode(bit)\n            l1 = l1.next if l1 else None\n            l2 = l2.next if l2 else None\n            curr = curr.next\n        if carry:\n            curr.next = ListNode(carry)\n        return dummy.next",
+        "runtime" : "120ms, 90.98%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Add Two Numbers",
+    "id" : 2
+  }, {
+    "Description" : "Given a string, find the length of the longest substring without repeating characters.\n\nExamples:\n\nGiven \"abcabcbb\", the answer is \"abc\", which the length is 3.\n\nGiven \"bbbbb\", the answer is \"b\", with the length of 1.\n\nGiven \"pwwkew\", the answer is \"wke\", with the length of 3. Note that the answer must be a substring, \"pwke\" is a subsequence and not a substring.",
+    "Difficulty" : "Hard",
+    "Number" : "3",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "public class Solution {\n    public int lengthOfLongestSubstring(String s) {\n        int longest = 0;\n        int left = 0;\n        Map<Character, Integer> map = new HashMap<>();\n        for (int i = 0; i < s.length(); i++) {\n            if (map.containsKey(s.charAt(i)) && map.get(s.charAt(i)) >= left) {\n                left = map.get(s.charAt(i)) + 1;\n            }\n            map.put(s.charAt(i), i);\n            longest = Math.max(longest, i - left + 1);\n        }\n        return longest;\n    }\n}",
+        "runtime" : "20ms, 100%"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def lengthOfLongestSubstring(self, s):\n        result, start, indexDict = 0, 0, {}\n        for i, c in enumerate(s):\n            if c in indexDict and indexDict[c] >= start:\n                start = indexDict[c] + 1\n            indexDict[c] = i\n            result = max(result, i - start + 1)\n        return result",
+        "runtime" : "95ms, 81.34%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Longest Substring Without Repeating Characters"
+  }, {
+    "Description" : "There are two sorted arrays nums1 and nums2 of size m and n respectively.\n\nFind the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).\n\nExample 1:\nnums1 = [1, 3]\nnums2 = [2]\n\nThe median is 2.0\nExample 2:\nnums1 = [1, 2]\nnums2 = [3, 4]\n\nThe median is (2 + 3)/2 = 2.5",
+    "Difficulty" : "Hard",
+    "Number" : "4",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "public class Solution {\n    double findMedianSortedArrays(int A[], int B[]) {\n        int len = A.length + B.length;\n        if (len % 2 == 1) {\n            return findKth(A, 0, B, 0, len / 2 + 1);\n        }\n        return (\n            findKth(A, 0, B, 0, len / 2) + findKth(A, 0, B, 0, len / 2 + 1)\n        ) / 2.0;\n    }\n\n    // find kth number of two sorted array\n    public static int findKth(int[] A, int A_start,\n                              int[] B, int B_start,\n                              int k){\t\t\n\t\tif (A_start >= A.length) {\n\t\t\treturn B[B_start + k - 1];\n\t\t}\n\t\tif (B_start >= B.length) {\n\t\t\treturn A[A_start + k - 1];\n\t\t}\n\n\t\tif (k == 1) {\n\t\t\treturn Math.min(A[A_start], B[B_start]);\n\t\t}\n\t\t\n\t\tint A_key = A_start + k / 2 - 1 < A.length\n\t\t            ? A[A_start + k / 2 - 1]\n\t\t            : Integer.MAX_VALUE;\n\t\tint B_key = B_start + k / 2 - 1 < B.length\n\t\t            ? B[B_start + k / 2 - 1]\n\t\t            : Integer.MAX_VALUE; \n\t\t\n\t\tif (A_key < B_key) {\n\t\t\treturn findKth(A, A_start + k / 2, B, B_start, k - k / 2);\n\t\t} else {\n\t\t\treturn findKth(A, A_start, B, B_start + k / 2, k - k / 2);\n\t\t}\n\t}\n}",
+        "runtime" : "5ms, 100%"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def findMedianSortedArrays(self, nums1, nums2):\n        total = len(nums1) + len(nums2)\n        if total & 0x1:\n            return self.findKth(nums1, nums2, total/2+1)\n        else:\n            smaller = self.findKth(nums1, nums2, total/2)\n            bigger = self.findKth(nums1, nums2, total/2+1)\n            return (smaller+bigger)/2.0\n\n    def findKth(self, nums1, nums2, k):\n        if len(nums1) == 0:\n            return nums2[k-1]\n        if len(nums2) == 0:\n            return nums1[k-1]\n        if k == 1:\n            return min(nums1[0], nums2[0])\n        a =nums1[k/2-1] if len(nums1)>= k/2 else float('inf')\n        b =nums2[k/2-1] if len(nums2)>= k/2 else float('inf')\n        if a < b:\n            return self.findKth(nums1[k/2:],nums2, k-k/2)\n        else:\n            return self.findKth(nums1, nums2[k/2:], k-k/2)\n        ",
+        "runtime" : "89ms, 95.61%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Median of Two Sorted Arrays"
+  }, {
+    "Description" : "Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.\n\nExample:\n\n\nInput: \"babad\"\n\nOutput: \"bab\"\n\nNote: \"aba\" is also a valid answer.\nExample:\n\nInput: \"cbbd\"\n\nOutput: \"bb\"",
+    "Difficulty" : "Medium",
+    "Number" : "5",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "public class Solution {\n    public String longestPalindrome(String s) {\n        String T = preProcess(s);\n        int n = T.length();\n        int[] p = new int[n];\n        int center = 0, right = 0;\n        for (int i = 1; i < n - 1; i++) {\n            int j = 2 * center - i;  //j and i are symmetric around center\n            p[i] = (right > i) ? Math.min(right - i, p[j]) : 0;\n            \n            // Expand palindrome centered at i\n            while (T.charAt(i + 1 + p[i]) == T.charAt(i - 1 - p[i]))\n                p[i]++;\n            \n            // If palindrome centered at i expand past right,\n            // then adjust center based on expand palindrome\n            if (i + p[i] > right) {\n                center = i;\n                right = i + p[i];\n            }\n        }\n        \n        //  Find the longest palindrome\n        int maxLength = 0, centerIndex = 0;\n        for (int i = 1; i < n - 1; i++) {\n            if (p[i] > maxLength) {\n                maxLength = p[i];\n                centerIndex = i;\n            }\n        }\n        centerIndex = (centerIndex - 1 - maxLength) / 2;\n        return s.substring(centerIndex, centerIndex + maxLength);\n    }\n    \n    // preProcess the original string s.\n    // For example, s = \"abcdefg\", then the rvalue = \"^#a#b#c#d#e#f#g#$\"\n    private String preProcess(String s) {\n        if (s == null || s.length() == 0)  return \"^$\";\n        StringBuilder rvalue = new StringBuilder(\"^\");\n        for (int i = 0; i < s.length(); i++)\n            rvalue.append(\"#\").append(s.substring(i, i+1));\n        rvalue.append(\"#$\");\n        return rvalue.toString();\n    }\n}",
+        "runtime" : "36ms, 47.67%"
+      }, {
+        "code" : "public class Solution {\n    public String longestPalindrome(String s) {\n        int len = s.length();\n        Boolean[] ref = new Boolean[len+1];//用来记录i到j的string是不是palindrome\n        java.util.Arrays.fill(ref, true);\n\n        int maxlen = 0;\n        int maxi = 0;\n        for (int j = 0; j < len; j++) // Beginning of the string\n            {\n                for (int i = 0; i <= j; i++) \n                {   \n                    if (s.charAt(i) == s.charAt(j)) ref[i] = ref[i+1];\n                    else ref[i] = false;\n\n                    if (ref[i]) {\n                        int curlen = j - i + 1;\n                        if (curlen > maxlen) {maxi = i; maxlen = curlen;}\n                    }    // If ref[j] is true, then update the answer\n                }\n            }          \n        return s.substring(maxi, maxi + maxlen);\n    }\n}",
+        "runtime" : "72ms, 29.45%"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def longestPalindrome(self, s):\n        if not s or len(s) == 1:\n            return s\n        longest = s[:1]\n        for i in xrange(len(s)):\n            exp1 = self.expand(s, i, i)\n            if len(exp1) > len(longest):\n                longest = exp1\n            exp2 = self.expand(s, i, i+1)\n            if len(exp2) > len(longest):\n                longest = exp2\n        return longest\n    \n    def expand(self, s, left, right):\n        while left >= 0 and right < len(s) and s[left] == s[right]:\n            left -= 1\n            right += 1\n        return s[left+1:right]",
+        "runtime" : "1268ms, 27.64%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Longest Palindromic Substring"
+  }, {
+    "Description" : "The string \"PAYPALISHIRING\" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)\n\nP   A   H   N\nA P L S I I G\nY   I   R\nAnd then read line by line: \"PAHNAPLSIIGYIR\"\nWrite the code that will take a string and make this conversion given a number of rows:\n\nstring convert(string text, int nRows);\nconvert(\"PAYPALISHIRING\", 3) should return \"PAHNAPLSIIGYIR\".",
+    "Difficulty" : "Easy",
+    "Number" : "6",
+    "Solutions" : {
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def convert(self, s, numRows):\n        length = len(s)\n        if length <= numRows or numRows == 1:\n            return s\n        charList = [''] * length\n        step = 2 * (numRows - 1)\n        count = 0\n        for i in xrange(numRows):\n            interval = step - 2 * i\n            for j in xrange(i, length, step):\n                charList[count] = s[j]\n                count += 1\n                if 0 < interval < step and \\\n                    j + interval < length and \\\n                    count < length:\n                        charList[count] = s[j+interval]\n                        count += 1\n        return ''.join(charList)",
+        "runtime" : "115ms, 71.13%"
+      }, {
+        "code" : "class Solution(object):\n    def convert(self, s, numRows):\n        length = len(s)\n        if length <= numRows or numRows == 1:\n            return s\n        charList = [''] * length\n        step = 2 * (numRows - 1)\n        count = 0\n        for i in xrange(numRows):\n            interval = step - 2 * i\n            for j in xrange(i, length, step):\n                charList[count] = s[j]\n                count += 1\n                if 0 < interval < step and \\\n                    j + interval < length and \\\n                    count < length:\n                        charList[count] = s[j+interval]\n                        count += 1\n        return ''.join(charList)",
+        "runtime" : "140ms, 40.69%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "ZigZag Conversion"
+  }, {
+    "Description" : "Reverse digits of an integer.\n\nExample1: x = 123, return 321\nExample2: x = -123, return -321",
+    "Difficulty" : "Easy",
+    "Number" : "7",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "public class Solution {\n    public int reverse(int n) {\n        if (n < 0) {\n            if ( n == -2147483648) {\n                return 0;\n            }\n            return -reverse(-n);\n        }\n        int result = 0;\n        while(n != 0){\n\n            if (result > Integer.MAX_VALUE/10){\n                return 0;\n            }\n            result = result * 10 + n % 10;\n            n /= 10;\n        }\n        \n        return result;\n    }\n}",
+        "runtime" : "2ms, 100%"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def reverse(self, x):\n        if x < 0:\n            return -self.reverse(-x)\n        result = 0\n        while x != 0:\n            result = result * 10 + x % 10\n            x /= 10\n        return result if result < 0x7FFFFFFF else 0",
+        "runtime" : "59ms, 51.08%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Reverse Integer"
+  }, {
+    "Description" : "Implement atoi to convert a string to an integer.\n\nHint: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.\n\nNotes: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.",
+    "Difficulty" : "Medium",
+    "Number" : "8",
+    "Solutions" : {
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def myAtoi(self, str):\n        str = str.strip()\n        if not str:\n            return 0\n        result, sign = 0, 1\n        MIN_INT = -1<<31\n        MAX_INT = -(MIN_INT + 1)\n        i = 0\n        \n        if str[i] in '+-':\n            if str[i] == '-':\n                sign = -1\n            i += 1\n        while i < len(str):\n            if not str[i].isdigit():\n                break\n            result = result * 10 + ord(str[i]) - ord('0')\n            i += 1\n        result *= sign\n        return min(MAX_INT, result) if result > 0 else max(MIN_INT, result)",
+        "runtime" : "56ms, 99.25%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "String to Integer (atoi)"
+  }, {
+    "Description" : "Determine whether an integer is a palindrome. Do this without extra space.",
+    "Difficulty" : "Easy",
+    "Number" : "9",
+    "Solutions" : {
+      "Go" : [ {
+        "code" : "func isPalindrome(x int) bool {\n    if x < 0 {\n        return false\n    }\n    \n    d := 1\n    for x / d >= 10 {\n        d *= 10\n    }\n    \n    for d > 1 {\n        if x / d != x % 10 {\n            return false\n        }\n        x = x % d / 10\n        d /= 100\n    }\n    return true\n}",
+        "runtime" : "89ms, 11.27%"
+      } ],
+      "Java" : [ {
+        "code" : "public class Solution {\n    public boolean isPalindrome(int x) {\n        if (x < 0) {\n            return false;\n        }\n        return x == reverse(x);\n    }\n    \n    public int reverse(int x) {\n        int result = 0;\n        while (x != 0) {\n            result = result * 10 + x % 10;\n            x = x / 10;\n        }\n        return result;\n    }\n}",
+        "runtime" : "12ms, 100%"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def isPalindrome(self, x):\n        if x < 0:\n            return False\n        d = 1\n        while x / d >= 10:\n            d *= 10\n        while d > 1:\n            if x / d != x % 10:\n                return False\n            x = x % d / 10\n            d /= 100\n        return True",
+        "runtime" : "209ms, 87.74%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Palindrome Number"
+  }, {
+    "Description" : "Implement regular expression matching with support for '.' and '*'.\n\n'.' Matches any single character.\n'*' Matches zero or more of the preceding element.\n\nThe matching should cover the entire input string (not partial).\n\nThe function prototype should be:\nbool isMatch(const char *s, const char *p)\n\nSome examples:\nisMatch(\"aa\",\"a\") → false\nisMatch(\"aa\",\"aa\") → true\nisMatch(\"aaa\",\"aa\") → false\nisMatch(\"aa\", \"a*\") → true\nisMatch(\"aa\", \".*\") → true\nisMatch(\"ab\", \".*\") → true\nisMatch(\"aab\", \"c*a*b\") → true",
+    "Difficulty" : "Hard",
+    "Number" : "10",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "// Time Complexity:  O(mn), Space: O(mn)\npublic class Solution {\n    public boolean isMatch(String s, String p) {\n        if (s == null || p == null) {\n            return false;\n        }\n        int m = s.length();\n        int n = p.length();\n        boolean[][] result = new boolean[m + 1][n + 1];\n        result[0][0] = true;\n        for (int i = 1; i <= m; i++) {\n            result[i][0] = false;\n        }\n        for (int i = 1; i <= n; i++) {\n            if (p.charAt(i - 1) == '*') {\n                result[0][i] = result[0][i - 2];\n            }\n        }\n        for (int i = 1; i <= m; i++) {\n            for (int j = 1; j <= n; j++) {\n                char c1 = s.charAt(i - 1);\n                char c2 = p.charAt(j - 1);\n                if (c2 == '*') {\n                    result[i][j] = result[i][j - 2] || match(c1, p.charAt(j - 2)) && result[i][j - 2] || match(c1, p.charAt(j - 2)) && result[i - 1][j];\n                } else {\n                    result[i][j] = match(c1, c2) && result[i - 1][j - 1];\n                }\n            }\n        }\n        return result[m][n];\n    }\n    public boolean match(char c1, char c2) {\n        return c2 == '.' || c2 == c1;\n    }\n}",
+        "runtime" : "30ms, 75.15%"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def isMatch(self, s, p):\n        \"\"\"\n        :type s: str\n        :type p: str\n        :rtype: bool\n        \"\"\"\n        if s is None and p is None:\n            return True\n        if s is None or p is None:\n            return False\n        m, n = len(s), len(p)\n        dp = [[False] * (n+1) for _ in xrange(m+1)]\n        dp[0][0] = True\n        \n        def match(s, p):\n            return s == p or p == '.'\n            \n        for j in xrange(1, n+1):\n            if p[j-1] == '*':\n                dp[0][j] = dp[0][j-2]\n        for i in xrange(1, m+1):\n            for j in xrange(1, n+1):\n                if p[j-1] == '*':\n                    dp[i][j] = dp[i][j-2] or match(s[i-1], p[j-2]) and dp[i-1][j]\n                else:\n                    dp[i][j] = dp[i-1][j-1] and match(s[i-1], p[j-1])\n        return dp[m][n]",
+        "runtime" : "72ms, 94.55%"
+      }, {
+        "code" : "class Solution(object):\n    def isMatch(self, s, p):\n        \"\"\"\n        :type s: str\n        :type p: str\n        :rtype: bool\n        \"\"\"\n        if s is None or p is None:\n            return False\n        m, n = len(s), len(p)\n        dp = [[False] * (n+1) for _ in xrange(m+1)]\n        dp[0][0] = True\n        \n        def match(c1, c2):\n            return c1 == c2 or c2 == '.'\n            \n        for i in xrange(1,n+1):\n            if i > 0 and p[i-1] == '*':\n                dp[0][i] = dp[0][i-2]\n        for i in xrange(1,m+1):\n            for j in xrange(1, n+1):\n                if p[j-1] == '*':\n                    dp[i][j] = dp[i][j-2] or match(s[i-1],p[j-2]) and (dp[i][j-2] or dp[i-1][j])\n                else:\n                    dp[i][j] = match(s[i-1], p[j-1]) and dp[i-1][j-1]\n        return dp[m][n]",
+        "runtime" : "99ms, 57.58%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Regular Expression Matching"
+  }, {
+    "Description" : "Given n non-negative integers a1, a2, ..., an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.\n\nNote: You may not slant the container and n is at least 2.",
+    "Difficulty" : "Medium",
+    "Number" : "11",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "public class Solution {\n    public int maxArea(int[] height) {\n        if (height == null || height.length <= 1) {\n            return 0;\n        }\n        int left = 0, right = height.length - 1;\n        int max = 0;\n        while (left < right) {\n            if (height[left] < height[right]) {\n                max = Math.max(max, height[left] * (right - left));\n                left++;\n            } else {\n                max = Math.max(max, height[right] * (right - left));\n                right--;\n            }\n        }\n        return max;\n    }\n}",
+        "runtime" : "4ms, 100%"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def maxArea(self, height):\n        \"\"\"\n        :type height: List[int]\n        :rtype: int\n        \"\"\"\n        maxarea = 0\n        left, right = 0, len(height) - 1\n        while left < right:\n            maxarea = max(maxarea, (right - left) * min(height[left], height[right]))\n            if height[left] < height[right]:\n                left += 1\n            else:\n                right -= 1\n        return maxarea",
+        "runtime" : "69ms, 85.99%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Container With Most Water"
+  }, {
+    "Description" : "Given an integer, convert it to a roman numeral.\n\nInput is guaranteed to be within the range from 1 to 3999.",
+    "Difficulty" : "Medium",
+    "Number" : "12",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "public class Solution {\n    public String intToRoman(int num) {\n        String[] romanChar = {\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"};\n        int[] integer = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};\n        StringBuilder stringBuilder = new StringBuilder();\n        for (int i = 0; i < romanChar.length; i++) {\n            while (num >= integer[i]) {\n                num -= integer[i];\n                stringBuilder.append(romanChar[i]);\n            }\n        }\n        return stringBuilder.toString();\n    }\n}",
+        "runtime" : "7ms, 100%"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def intToRoman(self, num):\n        \"\"\"\n        :type num: int\n        :rtype: str\n        \"\"\"\n        romans = ['M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I']\n        numbers = [1000,900,500,400,100,90,50,40,10,9,5,4,1]\n        resultList = []\n        for i in xrange(len(romans)):\n            while num - numbers[i] >= 0:\n                resultList.append(romans[i])\n                num -= numbers[i]\n        return ''.join(resultList)",
+        "runtime" : "142ms, 35.21%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Integer to Roman"
+  }, {
+    "Description" : "Given a roman numeral, convert it to an integer.\n\nInput is guaranteed to be within the range from 1 to 3999.",
+    "Difficulty" : "Easy",
+    "Number" : "13",
+    "Solutions" : {
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def romanToInt(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: int\n        \"\"\"\n        dic = {'M':1000,'D':500,'C':100,'L':50,'X':10,'V':5,'I':1}\n        result = 0\n        prev = 0\n        for c in s:\n            curr = dic[c]\n            result += curr\n            if curr > prev:\n                result -= 2 *prev\n            prev = curr\n        return result     ",
+        "runtime" : "148ms, 61.48%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Roman to Integer"
+  }, {
+    "Description" : "Write a function to find the longest common prefix string amongst an array of strings.",
+    "Difficulty" : "Easy",
+    "Number" : "14",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "public class Solution {\n    public String longestCommonPrefix(String[] strs) {\n        if (strs.length == 0 || strs == null) {\n            return \"\";\n        }\n        \n        String commonPrefix = strs[0];\n        \n        for (int i = 1; i < strs.length; i++) {\n            int index = 0;\n            while (index < strs[i].length() && index < commonPrefix.length() && \n                    commonPrefix.charAt(index) == strs[i].charAt(index)) {\n                index++;\n            }\n            if (index == 0) {\n                return \"\";\n            } else {\n                commonPrefix = commonPrefix.substring(0, index);\n            }\n        }\n        return commonPrefix;\n    }\n}",
+        "runtime" : "5ms, 100%"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def longestCommonPrefix(self, strs):\n        \"\"\"\n        :type strs: List[str]\n        :rtype: str\n        \"\"\"\n        if not strs:\n            return ''\n        shortest = strs[0]\n        for s in strs:\n            if len(s) < len(shortest):\n                shortest = s\n        for i in xrange(len(shortest)):\n            for s in strs:\n                if s[i] != shortest[i]:\n                    return shortest[:i]\n        return shortest",
+        "runtime" : "64ms, 25.25%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Longest Common Prefix"
+  }, {
+    "Description" : "Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.\n\nNote: The solution set must not contain duplicate triplets.\n\nFor example, given array S = [-1, 0, 1, 2, -1, -4],\n\nA solution set is:\n[\n  [-1, 0, 1],\n  [-1, -1, 2]\n]",
+    "Difficulty" : "Medium",
+    "Number" : "15",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "public class Solution {\n    public List<List<Integer>> threeSum(int[] nums) {\n        List<List<Integer>> res = new ArrayList<>();\n        if (nums == null || nums.length == 0) {\n            return res;\n        }\n        Arrays.sort(nums);\n        quickSort(nums, 0, nums.length - 1);\n        for (int i = 0; i <= nums.length - 3; i++) {\n            if (i > 0 && nums[i] == nums[i - 1]) {\n                continue;\n            }\n            int left = i + 1, right = nums.length - 1;\n            while (left < right) {\n                int sum = nums[i] + nums[left] + nums[right];\n                if (sum == 0) {\n                    Integer[] arr = {nums[i], nums[left], nums[right]};\n                    List<Integer> list = new ArrayList<>(Arrays.asList(arr));\n                    res.add(list);\n                    left++;\n                    while (left < right && nums[left] == nums[left - 1]) {\n                        left++;\n                    }\n                    right--;\n                    while (left < right && nums[right] == nums[right + 1]) {\n                        right--;\n                    }\n                } else if (sum > 0) {\n                    right--;\n                } else {\n                    left++;\n                }\n            }\n        }\n        return res;\n    }\n    \n    private void quickSort(int[] nums, int start, int end) {\n        int p = partition(nums, start, end);\n        if (p > start + 1) {\n            quickSort(nums, start, p - 1);\n        }\n        if (p < end - 1) {\n            quickSort(nums, p + 1, end);\n        }\n    }\n    private int partition(int[] nums, int start, int end) {\n        int pivot = nums[start];\n        int i = start;\n        int j = end + 1;\n        while (true) {\n            while(i < end && nums[++i] < pivot);\n            while (j > start && nums[--j] > pivot);\n            if (i >= j) {\n                break;\n            }\n            swap(nums, i, j);\n        }\n        swap(nums, start, j);\n        return j;\n    }\n    private void swap(int[] nums, int i, int j) {\n        int tmp = nums[i];\n        nums[i] = nums[j];\n        nums[j] = tmp;\n    }\n}",
+        "runtime" : "15ms, 100%"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def threeSum(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[List[int]]\n        \"\"\"\n        if len(nums) < 3:\n            return []\n        result = []\n        nums.sort()\n        \n        for i in xrange(len(nums)-2):\n            if i == 0 or nums[i] != nums[i-1]:\n                left, right = i+1, len(nums)-1\n                while left < right:\n                    tmp = nums[i] + nums[left] + nums[right]\n                    if tmp == 0:\n                        result.append([nums[i], nums[left], nums[right]])\n                        left += 1\n                        right -= 1\n                        while left < right and nums[left] == nums[left-1]:\n                            left += 1\n                        while left < right and nums[right] == nums[right+1]:\n                            right -= 1\n                    elif tmp < 0:\n                        left += 1\n                    else:\n                        right -= 1\n        return result",
+        "runtime" : "200ms, 60.03%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "3Sum"
+  }, {
+    "Description" : "Given an array S of n integers, find three integers in S such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have exactly one solution.\n\n    For example, given array S = {-1 2 1 -4}, and target = 1.\n\n    The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).",
+    "Difficulty" : "Medium",
+    "Number" : "16",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "public class Solution {\n    public int threeSumClosest(int[] nums, int target) {\n        Arrays.sort(nums);\n        int closetSum = Integer.MAX_VALUE;\n        int gap = closetSum;\n        for (int i = 0; i < nums.length; i++) {\n            int left = i + 1;\n            int right = nums.length - 1;\n            while (left < right) {\n                int sum = nums[i] + nums[left] + nums[right];\n                if (gap > Math.abs(target - sum)) {\n                    gap = Math.abs(target - sum);\n                    closetSum = sum;\n                }\n                if (sum < target) {\n                    left++;\n                } else if (sum > target) {\n                    right--;\n                } else {\n                    return target;\n                }\n            }\n        }\n        return closetSum;\n    }\n}",
+        "runtime" : "12ms, 100%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "3Sum Closest"
+  }, {
+    "Description" : "Given a digit string, return all possible letter combinations that the number could represent.\n\nA mapping of digit to letters (just like on the telephone buttons) is given below.\n\nInput:Digit string \"23\"\nOutput: [\"ad\", \"ae\", \"af\", \"bd\", \"be\", \"bf\", \"cd\", \"ce\", \"cf\"].\nNote:\nAlthough the above answer is in lexicographical order, your answer could be in any order you want.",
+    "Difficulty" : "Medium",
+    "Number" : "17",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "public class Solution {\n    public List<String> letterCombinations(String digits) {\n        List<String> result = new ArrayList<>();\n        if (digits == null || digits.length() == 0) {\n            return result;\n        }\n        result.add(\"\");\n        String[] map = new String[]{\"\", \"\", \"abc\", \"def\", \"ghi\", \"jkl\", \"mno\", \"pqrs\", \"tuv\", \"wxyz\"};\n        for (int i = 0; i < digits.length(); i++) {\n            int index = (int) (digits.charAt(i) - '0');\n            List<String> temp = new ArrayList<>();\n            for (String res : result) {\n                for(char letter : map[index].toCharArray()) {\n                    temp.add(res + letter);\n                }\n            }\n            result = temp;\n        }\n        return result;\n    }\n}",
+        "runtime" : "1ms, 100%"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def letterCombinations(self, digits):\n        \"\"\"\n        :type digits: str\n        :rtype: List[str]\n        \"\"\"\n        if not digits:\n            return  []\n        d = { '2':'abc', '3':'def', '4':'ghi',\n              '5':'jkl', '6':'mno', '7':'pqrs',\n              '8':'tuv', '9':'wxyz' }\n        results = []\n        self.dfs(digits, d, results, [], 0)\n        return results\n    \n    def dfs(self, digits, d, results, result, index):\n        if len(result) == len(digits):\n            results.append(''.join(result[:]))\n            return\n        else:\n            for i in xrange(index, len(digits)):\n                for c in d[digits[i]]:\n                    result.append(c)\n                    self.dfs(digits, d, results, result, i + 1)\n                    result.pop()\n                    ",
+        "runtime" : "49ms, 37.54%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Letter Combinations of a Phone Number"
+  }, {
+    "Description" : "Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target.\n\nNote: The solution set must not contain duplicate quadruplets.\n\nFor example, given array S = [1, 0, -1, 0, -2, 2], and target = 0.\n\nA solution set is:\n[\n  [-1,  0, 0, 1],\n  [-2, -1, 1, 2],\n  [-2,  0, 0, 2]\n]",
+    "Difficulty" : "Medium",
+    "Number" : "18",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "public class Solution {\n    public List<List<Integer>> fourSum(int[] nums, int target) {\n        List<List<Integer>> result = new ArrayList<>();\n        if (nums == null || nums.length == 0) {\n            return result;\n        }\n        Arrays.sort(nums);\n        for (int i = 0; i < nums.length - 3; i++) {\n            if (i > 0 && nums[i - 1] == nums[i]) {\n                continue;\n            }\n            for (int j = i + 1; j < nums.length - 2; j++) {\n                if (j > i + 1 && nums[j - 1] == nums[j]) {\n                    continue;\n                }\n                int start = j + 1;\n                int end = nums.length - 1;\n                int findNum = target - nums[i] - nums[j];\n                while (start < end) {\n                    if (nums[start] + nums[end] == findNum) {\n                        List<Integer> list = new ArrayList<>();\n                        list.add(nums[i]);\n                        list.add(nums[j]);\n                        list.add(nums[start]);\n                        list.add(nums[end]);\n                        result.add(list);\n                        while (start < end && nums[start + 1] == nums[start]) {\n                            start++;\n                        }\n                        while (start < end && nums[end - 1] == nums[end]) {\n                            end--;\n                        }\n                        start++;\n                        end--;\n                    } else if (nums[start] + nums[end] < findNum) {\n                        start++;\n                    } else {\n                        end--;\n                    }\n                }\n            }\n        }\n        return result;\n    }\n}",
+        "runtime" : "53ms, 84.42%"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def fourSum(self, nums, target):\n        \"\"\"\n        :type nums: List[int]\n        :type target: int\n        :rtype: List[List[int]]\n        \"\"\"\n        if not nums or len(nums) < 4:\n            return []\n        n, result, d = len(nums), set(), collections.defaultdict(list)\n        # nums.sort()\n        for i in xrange(n-1):\n            for j in xrange(i+1, n):\n                gap = target - nums[i] - nums[j]\n                if gap in d:\n                    for pair in d[gap]:\n                        tmp = pair[:] + [i,j]\n                        if len(set(tmp)) == 4:\n                            result.add(tuple(list(sorted(map(nums.__getitem__, tmp)))))\n                d[nums[i] + nums[j]].append([i, j])\n        result = map(list, result)\n        return result",
+        "runtime" : "225ms, 75.65%"
+      }, {
+        "code" : "class Solution(object):\n    def fourSum(self, nums, target):\n        \"\"\"\n        :type nums: List[int]\n        :type target: int\n        :rtype: List[List[int]]\n        \"\"\"\n        nums.sort()\n        results = []\n        self.findNsum(nums, target, 4, [], results)\n        return results\n\n    def findNsum(self, nums, target, N, result, results):\n        if len(nums) < N or N < 2: return\n\n        # solve 2-sum\n        if N == 2:\n            l,r = 0,len(nums)-1\n            while l < r:\n                if nums[l] + nums[r] == target:\n                    results.append(result + [nums[l], nums[r]])\n                    l += 1\n                    r -= 1\n                    while l < r and nums[l] == nums[l - 1]:\n                        l += 1\n                    while r > l and nums[r] == nums[r + 1]:\n                        r -= 1\n                elif nums[l] + nums[r] < target:\n                    l += 1\n                else:\n                    r -= 1\n        else:\n            for i in range(0, len(nums)-N+1):   # careful about range\n                if target < nums[i]*N or target > nums[-1]*N:  # take advantages of sorted list\n                    break\n                if i == 0 or i > 0 and nums[i-1] != nums[i]:  # recursively reduce N\n                    self.findNsum(nums[i+1:], target-nums[i], N-1, result+[nums[i]], results) ",
+        "runtime" : "125ms, 87.63%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "4Sum"
+  }, {
+    "Description" : "Given a linked list, remove the nth node from the end of list and return its head.\n\nFor example,\n\n   Given linked list: 1->2->3->4->5, and n = 2.\n\n   After removing the second node from the end, the linked list becomes 1->2->3->5.\nNote:\nGiven n will always be valid.\nTry to do this in one pass.",
+    "Difficulty" : "Medium",
+    "Number" : "19",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "/**\n * Definition for singly-linked list.\n * public class ListNode {\n *     int val;\n *     ListNode next;\n *     ListNode(int x) { val = x; }\n * }\n */\npublic class Solution {\n    public ListNode removeNthFromEnd(ListNode head, int n) {\n        if (head == null || n <= 0) {\n            return head;\n        }\n        ListNode dummy = new ListNode(0);\n        dummy.next = head;\n        ListNode preNode = dummy;\n        for (int i = 0; i < n; i++) {\n            head = head.next;\n        }\n        while (head != null) {\n            head = head.next;\n            preNode = preNode.next;\n        }\n        preNode.next = preNode.next.next;\n        return dummy.next;\n    }\n}",
+        "runtime" : "1ms, 100%"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def removeNthFromEnd(self, head, n):\n        \"\"\"\n        :type head: ListNode\n        :type n: int\n        :rtype: ListNode\n        \"\"\"\n        if not head:\n            return None\n        dummy = ListNode(0)\n        dummy.next = head\n        slow = fast = dummy\n        while n > 0:\n            fast = fast.next\n            n -= 1\n        while fast.next:\n            slow = slow.next\n            fast = fast.next\n        slow.next = slow.next.next\n        return dummy.next",
+        "runtime" : "46ms, 78.95%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Remove Nth Node From End of List"
+  }, {
+    "Description" : "Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.\n\nThe brackets must close in the correct order, \"()\" and \"()[]{}\" are all valid but \"(]\" and \"([)]\" are not.",
+    "Difficulty" : "Easy",
+    "Number" : "20",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "public class Solution {\n    public boolean isValid(String s) {\n        if(s == null || s.length() % 2 == 1) {\n            return false;\n        }\n        Map<Character, Character> map = new HashMap();\n        map.put('(', ')');\n        map.put('[', ']');\n        map.put('{', '}');\n        Stack<Character> stack = new Stack();\n        for (int i = 0; i < s.length(); i++) {\n            char c = s.charAt(i);\n            if (map.containsKey(c)) {\n                stack.push(c);\n            } else {\n                if (stack.isEmpty() || map.get(stack.peek()) != c) {\n                    return false;\n                }\n                stack.pop();\n            }\n        }\n        return stack.isEmpty();\n    }\n}",
+        "runtime" : "6ms, 95.48%"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def isValid(self, s):\n        \"\"\"\n        :type s: str\n        :rtype: bool\n        \"\"\"\n        stack = []\n        d = {'(':')', '[':']', '{':'}'}\n        for c in s:\n            if c in '([{':\n                stack.append(c)\n            else:\n                if not stack or d[stack[-1]] != c:\n                    return False\n                stack.pop()\n        return not bool(stack)",
+        "runtime" : "32ms, 99.23%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Valid Parentheses"
+  }, {
+    "Description" : "Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.",
+    "Difficulty" : "Easy",
+    "Number" : "21",
+    "Solutions" : {
+      "Python" : [ {
+        "code" : "# Definition for singly-linked list.\n# class ListNode(object):\n#     def __init__(self, x):\n#         self.val = x\n#         self.next = None\n\nclass Solution(object):\n    def mergeTwoLists(self, l1, l2):\n        \"\"\"\n        :type l1: ListNode\n        :type l2: ListNode\n        :rtype: ListNode\n        \"\"\"\n        curr = dummy = ListNode(0)\n        while l1 and l2:\n            if l1.val < l2.val:\n                curr.next, l1 = l1, l1.next\n            else:\n                curr.next, l2 = l2, l2.next\n            curr = curr.next\n        curr.next = l1 or l2\n        return dummy.next",
+        "runtime" : "46ms, 98.52%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Merge Two Sorted Lists"
+  }, {
+    "Description" : "Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.\n\nFor example, given n = 3, a solution set is:\n\n[\n  \"((()))\",\n  \"(()())\",\n  \"(())()\",\n  \"()(())\",\n  \"()()()\"\n]\n",
+    "Difficulty" : "Medium",
+    "Number" : "22",
+    "Solutions" : {
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def generateParenthesis(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: List[str]\n        \"\"\"\n        result = []\n        self.bfs(n, result)\n        return result\n        \n    def bfs(self, n, result):\n        \n        queue = [(0,0,'')]\n        while queue:\n            x, y, s = queue.pop(0)\n            if y == n:\n                result.append(s)\n            if x < n:\n                queue.append((x+1, y, s + '('))\n            if x > y:\n                queue.append((x, y+1, s + ')'))",
+        "runtime" : "62ms, 32.45%"
+      }, {
+        "code" : "class Solution(object):\n    def generateParenthesis(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: List[str]\n        \"\"\"\n        results = []\n        self.dfs(n, 0, 0, '', results)\n        return results\n        \n    def dfs(self, n, left, right, result,results):\n        if left == n and right == n:\n            results.append(result)\n            return\n        if left < n:\n            self.dfs(n, left + 1, right, result + '(', results)\n        if left > right:\n            self.dfs(n, left, right + 1, result + ')', results)",
+        "runtime" : "56ms, 49.27%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Generate Parentheses"
+  }, {
+    "Description" : "Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.",
+    "Difficulty" : "Hard",
+    "Number" : "23",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "/**\n * Definition for singly-linked list.\n * public class ListNode {\n *     int val;\n *     ListNode next;\n *     ListNode(int x) { val = x; }\n * }\n */\n// Yutao Hou\npublic class Solution {\n    public ListNode mergeKLists(ListNode[] lists) {\n        if (lists == null || lists.length == 0) {\n            return null;\n        }\n        int left = 0, right = lists.length - 1;\n        while (left < right) {\n            int l = left, r = right;\n            while (l < r) {\n                lists[l] = merge(lists[l], lists[r]);\n                l++;\n                r--;\n            }\n            right = r;\n        }\n        return lists[left];\n    }\n    private ListNode merge(ListNode list1, ListNode list2) {\n        if (list1 == null || list2 == null) {\n            return list1 == null ? list2 : list1;\n        }\n        ListNode dummy = new ListNode(0);\n        ListNode node = dummy;\n        while (list1 != null && list2 != null) {\n            if (list1.val < list2.val) {\n                node.next = list1;\n                list1 = list1.next;\n            } else {\n                node.next = list2;\n                list2 = list2.next;\n            }\n            node = node.next;\n        }\n        if (list1 != null) {\n            node.next = list1;\n        }\n        if (list2 != null) {\n            node.next = list2;\n        }\n        return dummy.next;\n    }\n    \n}",
+        "runtime" : "4ms, 100%"
+      } ],
+      "Python" : [ {
+        "code" : "# Definition for singly-linked list.\n# class ListNode(object):\n#     def __init__(self, x):\n#         self.val = x\n#         self.next = None\n\nclass Solution(object):\n    def mergeKLists(self, lists):\n        \"\"\"\n        :type lists: List[ListNode]\n        :rtype: ListNode\n        \"\"\"\n        if not lists:\n            return None\n        if len(lists) == 1:\n            return lists[0]\n        n = len(lists)\n        left = self.mergeKLists(lists[:n/2])\n        right = self.mergeKLists(lists[n/2:])\n        return self.merge(left, right)\n        \n    def merge(self, l1, l2):\n        \n        curr = dummy = ListNode(0)\n        while l1 and l2:\n            if l1.val < l2.val:\n                curr.next, l1 = l1, l1.next\n            else:\n                curr.next, l2 = l2, l2.next\n            curr = curr.next\n        curr.next = l1 or l2\n        return dummy.next",
+        "runtime" : "152ms, 52.58%"
+      }, {
+        "code" : "# Definition for singly-linked list.\n# class ListNode(object):\n#     def __init__(self, x):\n#         self.val = x\n#         self.next = None\n\nclass Solution(object):\n    def mergeKLists(self, lists):\n        \"\"\"\n        :type lists: List[ListNode]\n        :rtype: ListNode\n        \"\"\"\n        from heapq import heappush, heappop, heapreplace, heapify\n        dummy = node = ListNode(0)\n        h = [(n.val, n) for n in lists if n]\n        heapify(h)\n        while h:\n            v, n = h[0]\n            if n.next is None:\n                heappop(h) #only change heap size when necessary\n            else:\n                heapreplace(h, (n.next.val, n.next))\n            node.next = n\n            node = node.next\n\n        return dummy.next",
+        "runtime" : "156ms, 49.54%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Merge k Sorted Lists"
+  }, {
+    "Description" : "Given a linked list, swap every two adjacent nodes and return its head.\n\nFor example,\nGiven 1->2->3->4, you should return the list as 2->1->4->3.\n\nYour algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed.",
+    "Difficulty" : "Medium",
+    "Number" : "24",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "/**\n * Definition for singly-linked list.\n * public class ListNode {\n *     int val;\n *     ListNode next;\n *     ListNode(int x) { val = x; }\n * }\n */\npublic class Solution {\n    public ListNode swapPairs(ListNode head) {\n        if (head == null || head.next == null) {\n            return head;\n        }\n        \n        ListNode dummy = new ListNode(0);\n        dummy.next = head;\n        head = dummy;\n        \n        while (head.next != null && head.next.next != null) {\n            // head point moves to the second node\n            ListNode node1 = head.next, node2 = head.next.next;\n            \n            head.next = node2;\n            node1.next = node2.next;\n            node2.next = node1;\n            \n            head = node1;\n        }\n        return dummy.next;\n    }\n}",
+        "runtime" : "0ms, 100%"
+      }, {
+        "code" : "/**\n * Definition for singly-linked list.\n * public class ListNode {\n *     int val;\n *     ListNode next;\n *     ListNode(int x) { val = x; }\n * }\n */\npublic class Solution {\n    public ListNode swapPairs(ListNode head) {\n        if (head == null || head.next == null) {\n            return head;\n        }\n        ListNode dummy = new ListNode(0);\n        ListNode pre = dummy;\n        while (head != null && head.next != null) {\n            ListNode third = head.next.next;\n            pre.next = head.next;\n            pre.next.next = head;\n            head.next = third;\n            pre = head;\n            head = third;\n        }\n        return dummy.next;\n    }\n}",
+        "runtime" : "0ms, 100%"
+      } ],
+      "Python" : [ {
+        "code" : "# Definition for singly-linked list.\n# class ListNode(object):\n#     def __init__(self, x):\n#         self.val = x\n#         self.next = None\n\nclass Solution(object):\n    def swapPairs(self, head):\n        \"\"\"\n        :type head: ListNode\n        :rtype: ListNode\n        \"\"\"\n        if not head or not head.next:\n            return head\n        dummy = ListNode(0)\n        dummy.next = head\n        pre = dummy\n        while head and head.next:\n            third = head.next.next\n            pre.next = head.next\n            head.next.next = head\n            head.next = third\n            pre = head\n            head = third\n        return dummy.next",
+        "runtime" : "59ms, 13.02%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Swap Nodes in Pairs"
+  }, {
+    "Description" : "Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.\n\nk is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is.\n\nYou may not alter the values in the nodes, only nodes itself may be changed.\n\nOnly constant memory is allowed.\n\nFor example,\nGiven this linked list: 1->2->3->4->5\n\nFor k = 2, you should return: 2->1->4->3->5\n\nFor k = 3, you should return: 3->2->1->4->5",
+    "Difficulty" : "Hard",
+    "Number" : "25",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "public class Solution {\n    public ListNode reverseKGroup(ListNode head, int k) {\n        if (k <= 1) {\n            return head;\n        }\n        ListNode dummy = new ListNode(0);\n        ListNode left = dummy;\n        dummy.next = head;\n        head = dummy;\n        while (true) {\n            for (int i = 0; i < k; i++) {\n                head = head.next;\n                if (head == null) {\n                    return dummy.next;\n                }\n            }\n            ListNode right = head.next;\n            head.next = null;\n            ListNode reverse = getReverse(left.next);\n            left.next.next = right;\n            ListNode nextLeft = left.next;\n            left.next = reverse;\n            left = nextLeft;\n            head = left;\n        }\n    }\n    public ListNode getReverse(ListNode head) {\n        ListNode newNode = null;\n        while (head != null) {\n            ListNode next = head.next;\n            head.next = newNode;\n            newNode = head;\n            head = next;\n        }\n        return newNode;\n    }\n}",
+        "runtime" : "1ms, 100%"
+      } ],
+      "Python" : [ {
+        "code" : "# Definition for singly-linked list.\n# class ListNode(object):\n#     def __init__(self, x):\n#         self.val = x\n#         self.next = None\n\nclass Solution(object):\n    def reverseKGroup(self, head, k):\n        \"\"\"\n        :type head: ListNode\n        :type k: int\n        :rtype: ListNode\n        \"\"\"\n        curr, count = head, 0\n        while curr and count < k:\n            curr, count = curr.next, count + 1\n        if count == k:\n            curr = self.reverseKGroup(curr, k)\n            while k > 0:\n                tmp = head.next\n                head.next = curr\n                curr = head\n                head = tmp\n                k -= 1\n            head = curr\n        return head",
+        "runtime" : "65ms, 97.33%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Reverse Nodes in k-Group "
+  }, {
+    "Description" : "Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.\n\nDo not allocate extra space for another array, you must do this in place with constant memory.\n\nFor example,\nGiven input array nums = [1,1,2],\n\nYour function should return length = 2, with the first two elements of nums being 1 and 2 respectively. It doesn't matter what you leave beyond the new length.",
+    "Difficulty" : "Easy",
+    "Number" : "26",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "public class Solution {\n    public int removeDuplicates(int[] nums) {\n        if (nums == null || nums.length == 0) {\n            return 0;\n        }\n        int start = 1;\n        for (int i = 1; i < nums.length; i++) {\n            if (nums[i] != nums[i - 1]) {\n                nums[start++] = nums[i];\n            }\n        }\n        return start;\n    }\n}",
+        "runtime" : "2ms, 100%"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def removeDuplicates(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        if not nums:\n            return 0\n        pos = 0\n        for i in xrange(len(nums)):\n            if nums[i] != nums[pos]:\n                pos += 1\n                nums[pos] = nums[i]\n        return pos + 1",
+        "runtime" : "88ms, 75.54%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Remove Duplicates from Sorted Array"
+  }, {
+    "Description" : "Given an array and a value, remove all instances of that value in place and return the new length.\n\nDo not allocate extra space for another array, you must do this in place with constant memory.\n\nThe order of elements can be changed. It doesn't matter what you leave beyond the new length.\n\nExample:\nGiven input array nums = [3,2,2,3], val = 3\n\nYour function should return length = 2, with the first two elements of nums being 2.",
+    "Difficulty" : "Easy",
+    "Number" : "27",
+    "Solutions" : {
+      "Java" : [ {
+        "code" : "public class Solution {\n    public int removeElement(int[] nums, int val) {\n        int left = 0, right = nums.length - 1;\n        while (left <= right) {\n            if (nums[left] == val) {\n                nums[left] = nums[right];\n                right--;\n            } else {\n                left++;\n            }\n        }\n        return left;\n    }\n}",
+        "runtime" : "1ms, 100%"
+      } ],
+      "Python" : [ {
+        "code" : "class Solution(object):\n    def removeElement(self, nums, val):\n        \"\"\"\n        :type nums: List[int]\n        :type val: int\n        :rtype: int\n        \"\"\"\n        pos = 0\n        for i in xrange(len(nums)):\n            if nums[i] != val:\n                nums[i], nums[pos] = nums[pos], nums[i]\n                pos += 1\n        return pos",
+        "runtime" : "56ms, 28.88%"
+      }, {
+        "code" : "class Solution(object):\n    def removeElement(self, nums, val):\n        \"\"\"\n        :type nums: List[int]\n        :type val: int\n        :rtype: int\n        \"\"\"\n        left, right = 0, len(nums) - 1\n        while left <= right:\n            if nums[left] == val:\n                nums[left] = nums[right]\n                right -= 1\n            else:\n                left += 1\n        return left",
+        "runtime" : "52ms, 38.20%"
+      } ]
+    },
+    "Source" : "LeetCode",
+    "Title" : "Remove Element"
+  }, {
+    "Description" : "Implement strStr().\n\nReturns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.",
+    "Difficulty" : "Easy",
+    "Number" : "28",
+    "Source" : "LeetCode",
+    "Title" : "Implement strStr()"
+  }, {
+    "Description" : "Divide two integers without using multiplication, division and mod operator.\n\nIf it is overflow, return MAX_INT.",
+    "Difficulty" : "Medium",
+    "Number" : "29",
+    "Source" : "LeetCode",
+    "Title" : "Divide Two Integers"
+  }, {
+    "Description" : "You are given a string, s, and a list of words, words, that are all of the same length. Find all starting indices of substring(s) in s that is a concatenation of each word in words exactly once and without any intervening characters.\n\nFor example, given:\ns: \"barfoothefoobarman\"\nwords: [\"foo\", \"bar\"]\n\nYou should return the indices: [0,9].\n(order does not matter).",
+    "Difficulty" : "Hard",
+    "Number" : "30",
+    "Source" : "LeetCode",
+    "Title" : "Substring with Concatenation of All Words"
+  } ],
+  "Linux" : [ {
+    "expanded" : true,
+    "files" : [ {
+      "content" : "-t  # 指定排序时所用的栏位分隔字符\n-n  # 依照数值的大小排序\n-r  # 以相反的顺序来排序\n-f  # 排序时，将小写字母视为大写字母\n-d  # 排序时，处理英文字母、数字及空格字符外，忽略其他的字符\n-c  # 检查文件是否已经按照顺序排序\n-b  # 忽略每行前面开始处的空格字符\n-M  # 前面3个字母依照月份的缩写进行排序\n-k  # 指定域\n-m  # 将几个排序好的文件进行合并\n-T  # 指定临时文件目录,默认在/tmp\n+<起始栏位>-<结束栏位>   # 以指定的栏位来排序，范围由起始栏位到结束栏位的前一栏位。\n-o  # 将排序后的结果存入指定的文\n\nsort -n               # 按数字排序\nsort -nr              # 按数字倒叙\nsort -u               # 过滤重复行\nsort -m a.txt c.txt   # 将两个文件内容整合到一起\nsort -n -t' ' -k 2 -k 3 a.txt     # 第二域相同，将从第三域进行升降处理\nsort -n -t':' -k 3r a.txt         # 以:为分割域的第三域进行倒叙排列\nsort -k 1.3 a.txt                 # 从第三个字母起进行排序\nsort -t\" \" -k 2n -u  a.txt        # 以第二域进行排序，如果遇到重复的，就删除",
+      "name" : "sort"
+    }, {
+      "content" : "# linux文件无创建时间\n# Access 使用时间\n# Modify 内容修改时间\n# Change 状态改变时间(权限、属主)\n# 时间默认以24小时为单位,当前时间到向前24小时为0天,向前48-72小时为2天\n# -and 且 匹配两个条件 参数可以确定时间范围 -mtime +2 -and -mtime -4\n# -or 或 匹配任意一个条件\n\nfind /etc -name \"*http*\"     # 按文件名查找\nfind . -type f               # 查找某一类型文件\nfind / -perm                 # 按照文件权限查找\nfind / -user                 # 按照文件属主查找\nfind / -group                # 按照文件所属的组来查找文件\nfind / -atime -n             # 文件使用时间在N天以内\nfind / -atime +n             # 文件使用时间在N天以前\nfind / -mtime +n             # 文件内容改变时间在N天以前\nfind / -ctime +n             # 文件状态改变时间在N天前\nfind / -mmin +30             # 按分钟查找内容改变\nfind / -size +1000000c -print                           # 查找文件长度大于1M字节的文件\nfind /etc -name \"*passwd*\" -exec grep \"xuesong\" {} \\;   # 按名字查找文件传递给-exec后命令\nfind . -name 't*' -exec basename {} \\;                  # 查找文件名,不取路径\nfind . -type f -name \"err*\" -exec  rename err ERR {} \\; # 批量改名(查找err 替换为 ERR {}文件\nfind 路径 -name *name1* -or -name *name2*               # 查找任意一个关键字",
+      "name" : "find"
+    }, {
+      "content" : "tar zxvpf gz.tar.gz -C 放到指定目录 包中的目录       # 解包tar.gz 不指定目录则全解压\ntar zcvpf /$path/gz.tar.gz * # 打包gz 注意*最好用相对路径\ntar zcf /$path/gz.tar.gz *   # 打包正确不提示\ntar ztvpf gz.tar.gz          # 查看gz\ntar xvf 1.tar -C 目录         # 解包tar\ntar -cvf 1.tar *             # 打包tar\ntar tvf 1.tar                # 查看tar\ntar -rvf 1.tar 文件名         # 给tar追加文件\ntar --exclude=/home/dmtsai --exclude=*.tar -zcvf myfile.tar.gz /home/* /etc      # 打包/home, /etc ，但排除 /home/dmtsai\ntar -N \"2005/06/01\" -zcvf home.tar.gz /home      # 在 /home 当中，比 2005/06/01 新的文件才备份\ntar -zcvfh home.tar.gz /home                     # 打包目录中包括连接目录\ntar zcf - ./ | ssh root@IP \"tar zxf - -C /xxxx\"  # 一边压缩一边解压\nzgrep 字符 1.gz               # 查看压缩包中文件字符行\nbzip2  -dv 1.tar.bz2         # 解压bzip2\nbzip2 -v 1.tar               # bzip2压缩\nbzcat                        # 查看bzip2\ngzip A                       # 直接压缩文件 # 压缩后源文件消失\ngunzip A.gz                  # 直接解压文件 # 解压后源文件消失\ngzip -dv 1.tar.gz            # 解压gzip到tar\ngzip -v 1.tar                # 压缩tar到gz\nunzip zip.zip                # 解压zip\nzip zip.zip *                # 压缩zip\n# rar3.6下载:  http://www.rarsoft.com/rar/rarlinux-3.6.0.tar.gz\nrar a rar.rar *.jpg          # 压缩文件为rar包\nunrar x rar.rar              # 解压rar包\n7z a 7z.7z *                 # 7z压缩\n7z e 7z.7z                   # 7z解压",
+      "name" : "tar"
+    }, {
+      "content" : "rpm -ivh lynx          # rpm安装\nrpm -e lynx            # 卸载包\nrpm -e lynx --nodeps   # 强制卸载\nrpm -qa                # 查看所有安装的rpm包\nrpm -qa | grep lynx    # 查找包是否安装\nrpm -ql                # 软件包路径\nrpm -Uvh               # 升级包\nrpm --test lynx        # 测试\nrpm -qc                # 软件包配置文档\nrpm --import  /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6     # 导入rpm的签名信息\nrpm --initdb           # 初始化rpm 数据库\nrpm --rebuilddb        # 重建rpm数据库  在rpm和yum无响应的情况使用 先 rm -f /var/lib/rpm/__db.00* 在重建",
+      "name" : "rpm"
+    }, {
+      "content" : "yum list                 # 所有软件列表\nyum install 包名          # 安装包和依赖包\nyum -y update            # 升级所有包版本,依赖关系，系统版本内核都升级\nyum -y update 软件包名    # 升级指定的软件包\nyum -y upgrade           # 不改变软件设置更新软件，系统版本升级，内核不改变\nyum search mail          # yum搜索相关包\nyum grouplist            # 软件包组\nyum -y groupinstall \"Virtualization\"   # 安装软件包组\nrepoquery -ql gstreamer  # 不安装软件查看包含文件\nyum clean all            # 清除var下缓存\n\nyum使用epel源{\n\n    # 包下载地址: http://download.fedoraproject.org/pub/epel   # 选择版本5\\6\\7\n    rpm -Uvh  http://mirrors.hustunique.com/epel//6/x86_64/epel-release-6-8.noarch.rpm\n\n    # 自适配版本\n    yum install epel-release\n\n}\n\n自定义yum源{\n\n    find /etc/yum.repos.d -name \"*.repo\" -exec mv {} {}.bak \\;\n\n    vim /etc/yum.repos.d/yum.repo\n    [yum]\n    #http\n    baseurl=http://10.0.0.1/centos5.5\n    #挂载iso\n    #mount -o loop CentOS-5.8-x86_64-bin-DVD-1of2.iso /data/iso/\n    #本地\n    #baseurl=file:///data/iso/\n    enable=1\n\n    #导入key\n    rpm --import  /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5\n\n}",
+      "name" : "yum"
+    }, {
+      "content" : "源码安装{\n    ./configure --help                   # 查看所有编译参数\n    ./configure  --prefix=/usr/local/    # 配置参数\n    make                                 # 编译\n    # make -j 8                          # 多线程编译,速度较快,但有些软件不支持\n    make install                         # 安装包\n    make clean                           # 清除编译结果\n}\n\nperl程序编译{\n    perl Makefile.PL\n    make\n    make test\n    make install\n}\n\npython程序编译{\n    python file.py\n\n    # 源码包编译安装\n    python setup.py build\n    python setup.py install\n}\n\n编译c程序{\n    gcc -g hello.c -o hello\n}",
+      "name" : "compile"
+    }, {
+      "content" : "星期日[SUN] 星期一[MON] 星期二[TUE] 星期三[WED] 星期四[THU] 星期五[FRI] 星期六[SAT]\n一月[JAN] 二月[FEB] 三月[MAR] 四月[APR] 五月[MAY] 六月[JUN] 七月[JUL] 八月[AUG] 九月[SEP] 十月[OCT] 十一月[NOV] 十二月[DEC]\n\ndate -s 20091112                     # 设日期\ndate -s 18:30:50                     # 设时间\ndate -d \"7 days ago\" +%Y%m%d         # 7天前日期\ndate -d \"5 minute ago\" +%H:%M        # 5分钟前时间\ndate -d \"1 month ago\" +%Y%m%d        # 一个月前\ndate -d '1 days' +%Y-%m-%d           # 一天后\ndate -d '1 hours' +%H:%M:%S          # 一小时后\ndate +%Y-%m-%d -d '20110902'         # 日期格式转换\ndate +%Y-%m-%d_%X                    # 日期和时间\ndate +%N                             # 纳秒\ndate -d \"2012-08-13 14:00:23\" +%s    # 换算成秒计算(1970年至今的秒数)\ndate -d \"@1363867952\" +%Y-%m-%d-%T   # 将时间戳换算成日期\ndate -d \"1970-01-01 UTC 1363867952 seconds\" +%Y-%m-%d-%T  # 将时间戳换算成日期\ndate -d \"`awk -F. '{print $1}' /proc/uptime` second ago\" +\"%Y-%m-%d %H:%M:%S\"    # 格式化系统启动时间(多少秒前)",
+      "name" : "date"
+    }, {
+      "content" : "ulimit -SHn 65535  # 临时设置文件描述符大小 进程最大打开文件柄数 还有socket最大连接数, 等同配置 nofile\nulimit -SHu 65535  # 临时设置用户最大进程数\nulimit -a          # 查看\n\n/etc/security/limits.conf\n\n# 文件描述符大小  open files\n# lsof |wc -l   查看当前文件句柄数使用数量\n* soft nofile 16384         # 设置太大，进程使用过多会把机器拖死\n* hard nofile 32768\n\n# 用户最大进程数  max user processes\n# echo $((`ps uxm |wc -l`-`ps ux |wc -l`))  查看当前用户占用的进程数 [包括线程]\nuser soft nproc 16384\nuser hard nproc 32768\n\n# 如果/etc/security/limits.d/有配置文件，将会覆盖/etc/security/limits.conf里的配置\n# 即/etc/security/limits.d/的配置文件里就不要有同样的参量设置\n/etc/security/limits.d/90-nproc.conf    # centos6.3的默认这个文件会覆盖 limits.conf\nuser soft nproc 16384\nuser hard nproc 32768\n\nsysctl -p    # 修改配置文件后让系统生效",
+      "name" : "limits"
+    }, {
+      "content" : "内建三个表：nat mangle 和 filter\nfilter预设规则表，有INPUT、FORWARD 和 OUTPUT 三个规则链\nvi /etc/sysconfig/iptables    # 配置文件\nINPUT    # 进入\nFORWARD  # 转发\nOUTPUT   # 出去\nACCEPT   # 将封包放行\nREJECT   # 拦阻该封包\nDROP     # 丢弃封包不予处理\n-A       # 在所选择的链(INPUT等)末添加一条或更多规则\n-D       # 删除一条\n-E       # 修改\n-p       # tcp、udp、icmp    0相当于所有all    !取反\n-P       # 设置缺省策略(与所有链都不匹配强制使用此策略)\n-s       # IP/掩码    (IP/24)    主机名、网络名和清楚的IP地址 !取反\n-j       # 目标跳转，立即决定包的命运的专用内建目标\n-i       # 进入的（网络）接口 [名称] eth0\n-o       # 输出接口[名称]\n-m       # 模块\n--sport  # 源端口\n--dport  # 目标端口\n\niptables -F                        # 将防火墙中的规则条目清除掉  # 注意: iptables -P INPUT ACCEPT\niptables-restore < 规则文件        # 导入防火墙规则\n/etc/init.d/iptables save          # 保存防火墙设置\n/etc/init.d/iptables restart       # 重启防火墙服务\niptables -L -n                     # 查看规则\niptables -t nat -nL                # 查看转发\n\niptables实例{\n\n    iptables -L INPUT                   # 列出某规则链中的所有规则\n    iptables -X allowed                 # 删除某个规则链 ,不加规则链，清除所有非内建的\n    iptables -Z INPUT                   # 将封包计数器归零\n    iptables -N allowed                 # 定义新的规则链\n    iptables -P INPUT DROP              # 定义过滤政策\n    iptables -A INPUT -s 192.168.1.1    # 比对封包的来源IP   # ! 192.168.0.0/24  ! 反向对比\n    iptables -A INPUT -d 192.168.1.1    # 比对封包的目的地IP\n    iptables -A INPUT -i eth0           # 比对封包是从哪片网卡进入\n    iptables -A FORWARD -o eth0         # 比对封包要从哪片网卡送出 eth+表示所有的网卡\n    iptables -A INPUT -p tcp            # -p ! tcp 排除tcp以外的udp、icmp。-p all所有类型\n    iptables -D INPUT 8                 # 从某个规则链中删除一条规则\n    iptables -D INPUT --dport 80 -j DROP         # 从某个规则链中删除一条规则\n    iptables -R INPUT 8 -s 192.168.0.1 -j DROP   # 取代现行规则\n    iptables -I INPUT 8 --dport 80 -j ACCEPT     # 插入一条规则\n    iptables -A INPUT -i eth0 -j DROP            # 其它情况不允许\n    iptables -A INPUT -p tcp -s IP -j DROP       # 禁止指定IP访问\n    iptables -A INPUT -p tcp -s IP --dport port -j DROP               # 禁止指定IP访问端口\n    iptables -A INPUT -s IP -p tcp --dport port -j ACCEPT             # 允许在IP访问指定端口\n    iptables -A INPUT -p tcp --dport 22 -j DROP                       # 禁止使用某端口\n    iptables -A INPUT -i eth0 -p icmp -m icmp --icmp-type 8 -j DROP   # 禁止icmp端口\n    iptables -A INPUT -i eth0 -p icmp -j DROP                         # 禁止icmp端口\n    iptables -t filter -A INPUT -i eth0 -p tcp --syn -j DROP                  # 阻止所有没有经过你系统授权的TCP连接\n    iptables -A INPUT -f -m limit --limit 100/s --limit-burst 100 -j ACCEPT   # IP包流量限制\n    iptables -A INPUT -i eth0 -s 192.168.62.1/32 -p icmp -m icmp --icmp-type 8 -j ACCEPT  # 除192.168.62.1外，禁止其它人ping我的主机\n    iptables -A INPUT -p tcp -m tcp --dport 80 -m state --state NEW -m recent --update --seconds 5 --hitcount 20 --rttl --name WEB --rsource -j DROP  # 可防御cc攻击(未测试)\n\n}\n\niptables配置实例文件{\n\n    # Generated by iptables-save v1.2.11 on Fri Feb  9 12:10:37 2007\n    *filter\n    :INPUT ACCEPT [637:58967]\n    :FORWARD DROP [0:0]\n    :OUTPUT ACCEPT [5091:1301533]\n    # 允许的IP或IP段访问 建议多个\n    -A INPUT -s 127.0.0.1 -p tcp -j ACCEPT\n    -A INPUT -s 192.168.0.0/255.255.0.0 -p tcp -j ACCEPT\n    # 开放对外开放端口\n    -A INPUT -p tcp --dport 80 -j ACCEPT\n    # 指定某端口针对IP开放\n    -A INPUT -s 192.168.10.37 -p tcp --dport 22 -j ACCEPT\n    # 拒绝所有协议(INPUT允许)\n    -A INPUT -p tcp -m tcp --tcp-flags FIN,SYN,RST,PSH,URG RST -j DROP\n    # 允许已建立的或相关连的通行\n    -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT\n    # 拒绝ping\n    -A INPUT -p tcp -m tcp -j REJECT --reject-with icmp-port-unreachable\n    COMMIT\n    # Completed on Fri Feb  9 12:10:37 2007\n\n}\n\niptables配置实例{\n\n    # 允许某段IP访问任何端口\n    iptables -A INPUT -s 192.168.0.3/24 -p tcp -j ACCEPT\n    # 设定预设规则 (拒绝所有的数据包，再允许需要的,如只做WEB服务器.还是推荐三个链都是DROP)\n    iptables -P INPUT DROP\n    iptables -P FORWARD DROP\n    iptables -P OUTPUT ACCEPT\n    # 注意: 直接设置这三条会掉线\n    # 开启22端口\n    iptables -A INPUT -p tcp --dport 22 -j ACCEPT\n    # 如果OUTPUT 设置成DROP的，要写上下面一条\n    iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT\n    # 注:不写导致无法SSH.其他的端口一样,OUTPUT设置成DROP的话,也要添加一条链\n    # 如果开启了web服务器,OUTPUT设置成DROP的话,同样也要添加一条链\n    iptables -A OUTPUT -p tcp --sport 80 -j ACCEPT\n    # 做WEB服务器,开启80端口 ,其他同理\n    iptables -A INPUT -p tcp --dport 80 -j ACCEPT\n    # 做邮件服务器,开启25,110端口\n    iptables -A INPUT -p tcp --dport 110 -j ACCEPT\n    iptables -A INPUT -p tcp --dport 25 -j ACCEPT\n    # 允许icmp包通过,允许ping\n    iptables -A OUTPUT -p icmp -j ACCEPT (OUTPUT设置成DROP的话)\n    iptables -A INPUT -p icmp -j ACCEPT  (INPUT设置成DROP的话)\n    # 允许loopback!(不然会导致DNS无法正常关闭等问题)\n    IPTABLES -A INPUT -i lo -p all -j ACCEPT (如果是INPUT DROP)\n    IPTABLES -A OUTPUT -o lo -p all -j ACCEPT(如果是OUTPUT DROP)\n\n}\n\ncentos6的iptables基本配置{\n    *filter\n    :INPUT ACCEPT [0:0]\n    :FORWARD ACCEPT [0:0]\n    :OUTPUT ACCEPT [0:0]\n    -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT\n    -A INPUT -p icmp -j ACCEPT\n    -A INPUT -i lo -j ACCEPT\n    -A INPUT -s 222.186.135.61 -p tcp -j ACCEPT\n    -A INPUT -p tcp  --dport 80 -j ACCEPT\n    -A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT\n    -A INPUT -j REJECT --reject-with icmp-host-prohibited\n    -A INPUT -p tcp -m tcp --tcp-flags FIN,SYN,RST,PSH,URG RST -j DROP\n    -A FORWARD -j REJECT --reject-with icmp-host-prohibited\n    COMMIT\n}\n\n添加网段转发{\n\n    # 例如通过vpn上网\n    echo 1 > /proc/sys/net/ipv4/ip_forward       # 在内核里打开ip转发功能\n    iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -j MASQUERADE  # 添加网段转发\n    iptables -t nat -A POSTROUTING -s 10.0.0.0/255.0.0.0 -o eth0 -j SNAT --to 192.168.10.158  # 原IP网段经过哪个网卡IP出去\n    iptables -t nat -nL                # 查看转发\n\n}\n\n端口映射{\n\n    # 内网通过有外网IP的机器映射端口\n    # 内网主机添加路由\n    route add -net 10.10.20.0 netmask 255.255.255.0 gw 10.10.20.111     # 内网需要添加默认网关，并且网关开启转发\n    # 网关主机\n    echo 1 > /proc/sys/net/ipv4/ip_forward       # 在内核里打开ip转发功能\n    iptables -t nat -A PREROUTING -d 外网IP  -p tcp --dport 9999 -j DNAT --to 10.10.20.55:22    # 进入\n    iptables -t nat -A POSTROUTING -s 10.10.20.0/24 -j SNAT --to 外网IP                         # 转发回去\n    iptables -t nat -nL                # 查看转发\n\n}\n",
+      "name" : "iptables"
+    } ],
+    "name" : "Linux"
+  }, {
+    "expanded" : false,
+    "name" : "Docker"
+  }, {
+    "expanded" : false,
+    "name" : "Git"
+  }, {
+    "expanded" : true,
+    "name" : "Ansible"
+  }, {
+    "expanded" : true,
+    "name" : "Shell"
+  }, {
+    "expanded" : true,
+    "files" : [ {
+      "content" : "groupadd mysql\nuseradd mysql -g mysql -M -s /bin/false\ntar zxvf mysql-5.0.22.tar.gz\ncd mysql-5.0.22\n./configure  --prefix=/usr/local/mysql \\\n--with-client-ldflags=-all-static \\\n--with-mysqld-ldflags=-all-static \\\n--with-mysqld-user=mysql \\\n--with-extra-charsets=all \\\n--with-unix-socket-path=/var/tmp/mysql.sock\nmake  &&   make  install\n# 生成mysql用户数据库和表文件，在安装包中输入\nscripts/mysql_install_db  --user=mysql\nvi ~/.bashrc\nexport PATH=\"$PATH: /usr/local/mysql/bin\"\n# 配置文件,有large,medium,small三个，根据机器性能选择\ncp support-files/my-medium.cnf /etc/my.cnf\ncp support-files/mysql.server /etc/init.d/mysqld\nchmod 700 /etc/init.d/mysqld\ncd /usr/local\nchmod 750 mysql -R\nchgrp mysql mysql -R\nchown mysql mysql/var -R\ncp  /usr/local/mysql/libexec/mysqld mysqld.old\nln -s /usr/local/mysql/bin/mysql /sbin/mysql\nln -s /usr/local/mysql/bin/mysqladmin /sbin/mysqladmin\nln -s -f /usr/local/mysql/bin/mysqld_safe /etc/rc.d/rc3.d/S15mysql5\nln -s -f /usr/local/mysql/bin/mysqld_safe /etc/rc.d/rc0.d/K15mysql5\n",
+      "name" : "Installation"
+    } ],
+    "name" : "MySQL"
+  }, {
+    "expanded" : true,
+    "name" : "MongoDB"
+  }, {
+    "expanded" : true,
+    "name" : "Redis"
+  }, {
+    "expanded" : true,
+    "name" : "Vim"
+  } ],
+  "Python" : [ {
+    "expanded" : true,
+    "files" : [ {
+      "content" : "This is test content ",
+      "name" : "file2"
+    } ],
+    "name" : "Python Basics"
+  }, {
+    "expanded" : true,
+    "name" : "Libraries"
+  }, {
+    "expanded" : true,
+    "name" : "Networking"
+  }, {
+    "expanded" : false,
+    "name" : "Database"
+  }, {
+    "expanded" : true,
+    "name" : "NoSQL"
+  }, {
+    "expanded" : true,
+    "name" : "Crawlers"
+  }, {
+    "expanded" : true,
+    "name" : "Concurrency"
+  }, {
+    "expanded" : true,
+    "name" : "Django"
+  }, {
+    "expanded" : true,
+    "name" : "Flask"
+  }, {
+    "expanded" : true,
+    "name" : "Tornado"
+  } ]
+}
