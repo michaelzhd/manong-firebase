@@ -16,8 +16,14 @@
   "Java" : [ {
     "expanded" : true,
     "files" : [ {
-      "content" : "file2content",
+      "content" : "<code>\npublic class Solution {\n    public static Map&lt;String, String&gt;run(){}\n</code>\n",
       "name" : "file2"
+    }, {
+      "content" : "<code>&lt;b&gt;hello&lt;&#x2F;b&gt;hello</code>",
+      "name" : "file3"
+    }, {
+      "content" : "first code\n<code>public Map&lt;Integer, Integer&gt; func</code> \nsecond code\n<code>public Map&lt;Integer, Integer&gt; func2</code> \n",
+      "name" : "file1"
     } ],
     "name" : "Java Basics"
   }, {
@@ -36,8 +42,8 @@
   "JavaScript" : [ {
     "expanded" : true,
     "files" : [ {
-      "content" : "file2content",
-      "name" : "file2"
+      "content" : "closure",
+      "name" : "closure"
     } ],
     "name" : "JavaScript"
   }, {
@@ -73,10 +79,10 @@
         "runtime" : "100ms"
       } ],
       "Python" : [ {
-        "code" : "class Solution(object):\n    def twoSum(self, nums, target):\n        if len(nums) <= 1:\n           return [-1,-1]\n        lookup = {}\n        for i in xrange(len(nums)):\n            gap = target - nums[i]\n            if gap not in lookup:\n                lookup[nums[i]] = i\n            else:\n             return [lookup[gap],i]\n        return [-1,-1]",
+        "code" : "Use dictionary:\n<code>\nclass Solution(object):\n    def twoSum(self, nums, target):\n        if len(nums) <= 1:\n           return [-1,-1]\n        lookup = {}\n        for i in xrange(len(nums)):\n            gap = target - nums[i]\n            if gap not in lookup:\n                lookup[nums[i]] = i\n            else:\n             return [lookup[gap],i]\n        return [-1,-1]\n</code>",
         "runtime" : "100ms"
       }, {
-        "code" : "class Solution(object):\n    def twoSum(self, nums, target):\n        d = {}\n        for i, num in enumerate(nums):\n            if target - num in d:\n                return [d[target - num], i]\n            if num not in d:\n                d[num] = i\n        return [-1,-1]",
+        "code" : "Same method, just cleaner code:\n<code>\nclass Solution(object):\n    def twoSum(self, nums, target):\n        d = {}\n        for i, num in enumerate(nums):\n            if target - num in d:\n                return [d[target - num], i]\n            if num not in d:\n                d[num] = i\n        return [-1,-1]\n</code>",
         "runtime" : "56ms, 90.91%"
       } ]
     },
@@ -97,7 +103,7 @@
         "runtime" : "100ms"
       } ],
       "Python" : [ {
-        "code" : "class Solution(object):\n    def addTwoNumbers(self, l1, l2):\n        dummy = ListNode(0)\n        curr = dummy\n        carry = 0\n        while l1 or l2:\n            v1 = l1.val if l1 else 0\n            v2 = l2.val if l2 else 0\n            bitsum = v1 + v2 + carry\n            carry, bit = divmod(bitsum, 10)\n            curr.next = ListNode(bit)\n            l1 = l1.next if l1 else None\n            l2 = l2.next if l2 else None\n            curr = curr.next\n        if carry:\n            curr.next = ListNode(carry)\n        return dummy.next",
+        "code" : "<code>\nclass Solution(object):\n    def addTwoNumbers(self, l1, l2):\n        dummy = ListNode(0)\n        curr = dummy\n        carry = 0\n        while l1 or l2:\n            v1 = l1.val if l1 else 0\n            v2 = l2.val if l2 else 0\n            bitsum = v1 + v2 + carry\n            carry, bit = divmod(bitsum, 10)\n            curr.next = ListNode(bit)\n            l1 = l1.next if l1 else None\n            l2 = l2.next if l2 else None\n            curr = curr.next\n        if carry:\n            curr.next = ListNode(carry)\n        return dummy.next\n</code>",
         "runtime" : "120ms, 90.98%"
       } ]
     },
@@ -566,9 +572,6 @@
     "name" : "Linux"
   }, {
     "expanded" : true,
-    "name" : "Docker"
-  }, {
-    "expanded" : true,
     "files" : [ {
       "content" : "# 编译安装git-1.8.4.4\n./configure --with-curl --with-expat\nmake\nmake install\n\ngit clone git@10.10.10.10:gittest.git  ./gittest/  # 克隆项目到指定目录\ngit status                                         # Show the working tree(工作树) status\ngit log -n 1 --stat                                # 查看最后一次日志文件\ngit branch -a                                      # 列出远程跟踪分支(remote-tracking branches)和本地分支\ngit checkout developing                            # 切换到developing分支\ngit checkout -b release                            # 切换分支没有从当前分支创建\ngit checkout -b release origin/master              # 从远程分支创建本地镜像分支\ngit push origin --delete release                   # 从远端删除分区，服务端有可能设置保护不允许删除\ngit push origin release                            # 把本地分支提交到远程\ngit pull                                           # 更新项目 需要cd到项目目录中\ngit fetch                                          # 抓取远端代码但不合并到当前\ngit reset --hard origin/master                     # 和远端同步分支\ngit add .                                          # 更新所有文件\ngit commit -m \"gittest up\"                         # 提交操作并添加备注\ngit push                                           # 正式提交到远程git服务器\ngit push [-u origin master]                        # 正式提交到远程git服务器(master分支)\ngit tag [-a] dev-v-0.11.54 [-m 'fix #67']          # 创建tag,名为dev-v-0.11.54,备注fix #67\ngit tag -l dev-v-0.11.54                           # 查看tag(dev-v-0.11.5)\ngit push origin --tags                             # 提交tag\ngit reset --hard                                   # 本地恢复整个项目\ngit rm -r -n --cached  ./img                       # -n执行命令时,不会删除任何文件,而是展示此命令要删除的文件列表预览\ngit rm -r --cached  ./img                          # 执行删除命令 需要commit和push让远程生效\ngit init --bare smc-content-check.git              # 初始化新git项目  需要手动创建此目录并给git用户权限 chown -R git:git smc-content-check.git\ngit config --global credential.helper store        # 记住密码\ngit config [--global] user.name \"your name\"        # 设置你的用户名, 希望在一个特定的项目中使用不同的用户或e-mail地址, 不要--global选项\ngit config [--global] user.email \"your email\"      # 设置你的e-mail地址, 每次Git提交都会使用该信息\ngit config [--global] user.name                    # 查看用户名\ngit config [--global] user.email                   # 查看用户e-mail\ngit config --global --edit                         # 编辑~/.gitconfig(User-specific)配置文件, 值优先级高于/etc/gitconfig(System-wide)\ngit config --edit                                  # 编辑.git/config(Repository specific)配置文件, 值优先级高于~/.gitconfig\ngit cherry-pick  <commit id>                       # 用于把另一个本地分支的commit修改应用到当前分支 需要push到远程\ngit log --pretty=format:'%h: %s' 9378b62..HEAD     # 查看指定范围更新操作 commit id\n\n从远端拉一份新的{\n    # You have not concluded your merge (MERGE_HEAD exists)  git拉取失败\n    git fetch --hard origin/master\n    git reset --hard origin/master\n}\n",
       "name" : "Basics"
@@ -684,5 +687,111 @@
   }, {
     "expanded" : true,
     "name" : "Tornado"
+  } ],
+  "System Design" : [ {
+    "expanded" : false,
+    "files" : [ {
+      "content" : "file2content",
+      "name" : "mini twitter"
+    } ],
+    "name" : "Twitter"
+  }, {
+    "expanded" : false,
+    "files" : [ {
+      "content" : "<img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzsfC3_TjqWY541kl2wfLZnOTL6nKrM1H8RQJCc9BgiU3pYcbnxg\" />",
+      "name" : "UberEats"
+    } ],
+    "name" : "Uber"
+  }, {
+    "expanded" : false,
+    "name" : "Netflix"
+  }, {
+    "expanded" : true,
+    "name" : "Facebook"
+  }, {
+    "expanded" : true,
+    "name" : "Linkedin"
+  }, {
+    "expanded" : true,
+    "name" : "Monitor System"
+  }, {
+    "expanded" : true,
+    "name" : "Dashboard"
+  }, {
+    "expanded" : true,
+    "name" : "Dropbox"
+  }, {
+    "expanded" : true,
+    "name" : "Twitch"
+  }, {
+    "directories" : [ {
+      "expanded" : true,
+      "name" : "Google Doc"
+    }, {
+      "expanded" : true,
+      "name" : "Google Sheet"
+    }, {
+      "expanded" : true,
+      "name" : "Google File System"
+    }, {
+      "expanded" : true,
+      "name" : "Bigtable"
+    } ],
+    "expanded" : false,
+    "name" : "Google"
+  }, {
+    "expanded" : true,
+    "name" : "Whatsapp"
+  }, {
+    "expanded" : true,
+    "name" : "Wechat"
+  }, {
+    "expanded" : true,
+    "name" : "User System"
+  }, {
+    "expanded" : true,
+    "name" : "SQL Database"
+  }, {
+    "expanded" : true,
+    "name" : "NoSQL Database"
+  }, {
+    "expanded" : true,
+    "name" : "Crawler"
+  }, {
+    "expanded" : true,
+    "name" : "Tiny URL"
+  }, {
+    "expanded" : true,
+    "name" : "Task Scheduler"
+  }, {
+    "expanded" : true,
+    "name" : "Rate Limiter"
+  }, {
+    "expanded" : true,
+    "name" : "Flicker"
+  }, {
+    "expanded" : true,
+    "name" : "Recommender System"
+  }, {
+    "expanded" : true,
+    "name" : "Message Broker"
+  }, {
+    "expanded" : true,
+    "name" : "Chess"
+  }, {
+    "expanded" : true,
+    "name" : "Elevator"
+  }, {
+    "expanded" : true,
+    "name" : "ATM"
+  }, {
+    "expanded" : true,
+    "name" : "Typeahead"
+  }, {
+    "expanded" : true,
+    "name" : "Yelp"
+  }, {
+    "expanded" : true,
+    "name" : "MapReduce"
   } ]
 }
